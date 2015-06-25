@@ -1,44 +1,46 @@
-(function(){
+(function () {
 
-var Snake = {};
+    "use strict";
 
-Snake.sound = 'hiss';
-Snake.speak = function(){
-	return this.sound + '!!'
-};
+    var Snake = {};
 
-var Constrictor = Object.create(Snake);
-Constrictor.constrict = function(){
-	return 'the snake squeezes you to death';
-};
+    Snake.sound = 'hiss';
+    Snake.speak = function () {
+        return this.sound + '!!';
+    };
 
-var Venomous = Object.create(Snake);
-Venomous.invenomate = function(){
-	return 'the snake bites you and the poison kills you';
-};
+    var Constrictor = Object.create(Snake);
+    Constrictor.constrict = function () {
+        return 'the snake squeezes you to death';
+    };
 
-
-var python = Object.create(Constrictor);
-
-var cobra = Object.create(Venomous);
+    var Venomous = Object.create(Snake);
+    Venomous.invenomate = function () {
+        return 'the snake bites you and the poison kills you';
+    };
 
 
-console.log('Python:\n' + python.speak() + '\n' + python.constrict());
+    var python = Object.create(Constrictor);
 
-console.log('Cobra:\n' + cobra.speak() + '\n' + cobra.invenomate());
+    var cobra = Object.create(Venomous);
 
-try{
-	console.log('Python invenomating: \n');
-	python.invenomate();
-} catch(e){
-	console.log('A python cannot invenomate\n', e);
 
-	try{
-		console.log('Cobra constricting: \n');
-		cobra.constrict();
-	} catch(e){
-		console.log('A cobra cannot constrict\n', e);
-	}
+    console.log('Python:\n' + python.speak() + '\n' + python.constrict());
 
-}
+    console.log('Cobra:\n' + cobra.speak() + '\n' + cobra.invenomate());
+
+    try {
+        console.log('Python invenomating: \n');
+        python.invenomate();
+    } catch (e) {
+        console.log('A python cannot invenomate\n', e);
+    }
+
+    try {
+        console.log('Cobra constricting: \n');
+        cobra.constrict();
+    } catch (e) {
+        console.log('A cobra cannot constrict\n', e);
+    }
+
 }());
