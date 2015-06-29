@@ -1,11 +1,15 @@
 (function () {
     "use strict";
 
-    function Snake() {
-        var sound = 'hiss';
+    function Snake(name) {
+        var sound = 'Hiss';
+        
 
         this.getSound = function () {
             return sound;
+        };
+        this.getName = function getName(){
+            return this.name;
         };
         return undefined;
     }
@@ -15,49 +19,58 @@
     };
 
 
-    function Constrictor() {
+    function Constrictor(name) {
+        this.name = name;
         return undefined;
     }
     Constrictor.prototype = new Snake();
     Constrictor.prototype.constructor = Constrictor;
 
     Constrictor.prototype.constrict = function () {
-        return 'the snake squeezes you to death';
+        return 'The ' + this.getName().toLowerCase() + ' squeezes you to death!';
     };
 
 
-    function Venomous() {
+    function Venomous(name) {
+        this.name = name;
         return undefined;
     }
     Venomous.prototype = new Snake();
     Venomous.prototype.constructor = Venomous;
 
     Venomous.prototype.invenomate = function () {
-        return 'the snake bites you and the poison kills you';
+        return 'The ' + this.getName().toLowerCase() + ' bites you and the poison kills you!';
     };
 
 
-    var python = new Constrictor();
+    var python = new Constrictor('Python');
 
-    var cobra = new Venomous();
+    var cobra = new Venomous('Cobra');
 
 
-    console.log('Python:\n' + python.speak() + '\n' + python.constrict());
+    console.log('From the base class both can \'speak\'');
+    console.log(python.name + ':\n' + python.speak());
 
-    console.log('Cobra:\n' + cobra.speak() + '\n' + cobra.invenomate());
+    console.log(cobra.name + ':\n' + cobra.speak());
 
+    console.log('They have access to their sub-class methods: \n');
+    console.log(python.name + ':\n' + python.constrict());
+
+    console.log(cobra.name + ':\n' + cobra.invenomate());
+
+    console.log('...but not to each others: \n');
     try {
-        console.log('Python invenomating: \n');
+        console.log(python.name + ' invenomating: \n');
         python.invenomate();
     } catch (e) {
         console.log('A python cannot invenomate\n', e);
     }
 
     try {
-        console.log('Cobra constricting: \n');
+        console.log(cobra.name + ' constricting: \n');
         cobra.constrict();
-    } catch (e) {
-        console.log('A cobra cannot constrict\n', e);
+    } catch (err) {
+        console.log('A cobra cannot constrict\n', err);
     }
 
 

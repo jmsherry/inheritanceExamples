@@ -4,43 +4,51 @@
 
     var Snake = {};
 
-    Snake.sound = 'hiss';
+    Snake.sound = 'Hiss';
     Snake.speak = function () {
         return this.sound + '!!';
     };
 
     var Constrictor = Object.create(Snake);
     Constrictor.constrict = function () {
-        return 'the snake squeezes you to death';
+        return 'The ' + this.name.toLowerCase() +' squeezes you to death!';
     };
 
     var Venomous = Object.create(Snake);
     Venomous.invenomate = function () {
-        return 'the snake bites you and the poison kills you';
+        return 'The ' + this.name.toLowerCase() +' bites you and the poison kills you!';
     };
 
 
     var python = Object.create(Constrictor);
+    python.name = 'Python';
 
     var cobra = Object.create(Venomous);
+    cobra.name = 'Cobra';
 
+    console.log('From the base class both can \'speak\' using a shared method and shared private variable');
+    console.log(python.name + ':\n' + python.speak());
 
-    console.log('Python:\n' + python.speak() + '\n' + python.constrict());
+    console.log(cobra.name + ':\n' + cobra.speak());
 
-    console.log('Cobra:\n' + cobra.speak() + '\n' + cobra.invenomate());
+    console.log('They have access to their sub-class methods: \n');
+    console.log(python.name + ':\n' + python.constrict());
 
+    console.log(cobra.name + ':\n' + cobra.invenomate());
+
+    console.log('...but not to each others: \n');
     try {
-        console.log('Python invenomating: \n');
+        console.log(python.name + ' invenomating: \n');
         python.invenomate();
     } catch (e) {
         console.log('A python cannot invenomate\n', e);
     }
 
     try {
-        console.log('Cobra constricting: \n');
+        console.log(cobra.name + ' constricting: \n');
         cobra.constrict();
-    } catch (e) {
-        console.log('A cobra cannot constrict\n', e);
+    } catch (err) {
+        console.log('A cobra cannot constrict\n', err);
     }
 
 }());
