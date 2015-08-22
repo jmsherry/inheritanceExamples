@@ -26,7 +26,7 @@
     var cobra = Object.create(Venomous);
     cobra.name = 'Cobra';
 
-    console.log('From the base class both can \'speak\' using a shared method and shared private variable');
+    console.log('From the base class both can \'speak\' using a shared method and shared instance variable');
     console.log(python.name + ':\n' + python.speak());
 
     console.log(cobra.name + ':\n' + cobra.speak());
