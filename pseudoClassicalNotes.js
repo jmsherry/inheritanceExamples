@@ -9,6 +9,7 @@ function MyClass () {
 
 // A 'static method', it's just like a normal function
 // it has no relation with any 'MyClass' object instance  
+// See (http://blog.anselmbradford.com/2009/04/09/object-oriented-javascript-tip-creating-static-methods-instance-methods/)
 MyClass.staticMethod = function () {};
 
 MyClass.prototype.publicMethod = function () {
